@@ -24,8 +24,7 @@ namespace avance
         DataSet ds = new DataSet();
 
 
-        DateTime fecha = DateTime.Now;
-
+        
 
 
         string server = "localhost";
@@ -36,6 +35,7 @@ namespace avance
 
         private void alta()
         {
+            DateTime fecha = DateTime.Now;
 
             conn.ConnectionString = "server=" + server + ";" + "user id = " + username + ";" +
            "password =" + password + ";" + "database = " + database;
@@ -44,8 +44,33 @@ namespace avance
             {
                 conn.Open();
                 MessageBox.Show("hoy es " + fecha);
-                query = "insert into preparadas.venta (total,mesero,mesa,fecha,iddetalle_venta) " +
-                    "VALUES(1500, 2, 4," + fecha + ", 5;";
+                query = "INSERT INTO `preparadas`.`venta` (`total`, `idmesero`, `mesa`, `fecha`, `iddetalle_venta`) " +
+                    "VALUES ('1500', '2', '4', '"+fecha+"', '6');"; //prueba de query para meter datos a la tabla venta
+                cmd = new MySqlCommand(query, conn);
+                reader = cmd.ExecuteReader();
+                conn.Close();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void cambio()
+        {
+            conn.ConnectionString = "server=" + server + ";" + "user id = " + username + ";" +
+           "password =" + password + ";" + "database = " + database;
+           
+            try
+            {
+
+                conn.Open();
+                query = "UPDATE `preparadas`.`venta` SET `total` = '1000' WHERE (`idventa` = '4');"; //UPDATE `preparadas`.`venta` SET `total` = '1000' WHERE (`idventa` = '4');
                 cmd = new MySqlCommand(query, conn);
                 reader = cmd.ExecuteReader();
                 conn.Close();
@@ -84,6 +109,7 @@ namespace avance
         {
             alta();
             upload();
+            cambio();
         }
     }
 }
