@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Reporting.WinForms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -22,10 +23,6 @@ namespace avance
         MySqlDataAdapter dta = new MySqlDataAdapter();
         MySqlDataReader reader;
         DataSet ds = new DataSet();
-
-
-        
-
 
         string server = "localhost";
         string username = "root";
@@ -97,9 +94,24 @@ namespace avance
             dt.Load(reader);
             reader.Close();
             conn.Close();
-
             dataGridView1.DataSource = dt;
         }
+
+        private void informe()
+        {
+
+            MySqlConnection cn = new MySqlConnection("Server = localhost; Database = preparadas; Uid = root; Pwd = #Pavel15;");
+            DataTable da = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter("Select * FROM venta", cn);
+
+            adapter.Fill(da);
+            reportViewer1.LocalReport.DataSources.Clear();
+            ReportDataSource rp = new ReportDataSource("info1",da);
+            reportViewer1.LocalReport.DataSources.Add(rp);
+            reportViewer1.RefreshReport();
+
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -107,9 +119,19 @@ namespace avance
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            alta();
+            
+             this.reportViewer1.RefreshReport();
+            //alta();
             upload();
             cambio();
+           informe();
+
+
+        }
+
+        private void reportViewer1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
