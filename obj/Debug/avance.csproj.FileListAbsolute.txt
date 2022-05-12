@@ -24,7 +24,6 @@ C:\giju\avance\bin\Debug\System.Memory.xml
 C:\giju\avance\bin\Debug\System.Numerics.Vectors.xml
 C:\giju\avance\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\giju\avance\obj\Debug\avance.csproj.AssemblyReference.cache
-C:\giju\avance\obj\Debug\avance.csproj.SuggestedBindingRedirects.cache
 C:\giju\avance\obj\Debug\avance.Form1.resources
 C:\giju\avance\obj\Debug\avance.Properties.Resources.resources
 C:\giju\avance\obj\Debug\avance.csproj.GenerateResource.cache
@@ -84,3 +83,14 @@ C:\giju\avance\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
 C:\giju\avance\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
 C:\giju\avance\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\giju\avance\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\giju\avance\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+C:\giju\avance\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\giju\avance\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+C:\giju\avance\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\giju\avance\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\giju\avance\bin\Debug\Microsoft.MSXML.dll
+C:\giju\avance\bin\Debug\FastReport.Compat.dll
+C:\giju\avance\bin\Debug\FastReport.dll
+C:\giju\avance\bin\Debug\FastReport.xml
+C:\giju\avance\bin\Debug\EnvDTE.xml
+C:\giju\avance\obj\Debug\avance.csproj.SuggestedBindingRedirects.cache

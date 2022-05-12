@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace avance
 {
@@ -23,7 +24,7 @@ namespace avance
         MySqlDataAdapter dta = new MySqlDataAdapter();
         MySqlDataReader reader;
         DataSet ds = new DataSet();
-
+        
         string server = "localhost";
         string username = "root";
         string password = "#Pavel15";
@@ -33,73 +34,60 @@ namespace avance
         private void alta()
         {
             DateTime fecha = DateTime.Now;
+            string conexion = "Data Source=PAVELAZO;Initial Catalog=preparadas;Integrated Security=True";
 
-            conn.ConnectionString = "server=" + server + ";" + "user id = " + username + ";" +
-           "password =" + password + ";" + "database = " + database;
+            SqlConnection con = new SqlConnection(conexion);
 
-            try
-            {
-                conn.Open();
-                MessageBox.Show("hoy es " + fecha);
-                query = "INSERT INTO `preparadas`.`venta` (`total`, `idmesero`, `mesa`, `fecha`, `iddetalle_venta`) " +
-                    "VALUES ('1500', '2', '4', '"+fecha+"', '6');"; //prueba de query para meter datos a la tabla venta
-                cmd = new MySqlCommand(query, conn);
-                reader = cmd.ExecuteReader();
-                conn.Close();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
+            con.Open();
+
+            query = "INSERT INTO ventaa (total, idmesero, mesa, fecha, iddetalle_venta)"+
+                    "VALUES('1500', '2', '4', '" + fecha+ "', '6'); "; //prueba de query para meter datos a la tabla venta
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+
+            con.Close();      
         }
-
+        
         public void cambio()
         {
-            conn.ConnectionString = "server=" + server + ";" + "user id = " + username + ";" +
-           "password =" + password + ";" + "database = " + database;
+          
+           string conexion = "Data Source=PAVELAZO;Initial Catalog=preparadas;Integrated Security=True";
+
+           SqlConnection con = new SqlConnection(conexion);
+
+            con.Open();
            
-            try
-            {
+            query = "UPDATE ventaa SET total = '3000' WHERE (idventa = '1');"; //UPDATE `preparadas`.`venta` SET `total` = '1000' WHERE (`idventa` = '4');
 
-                conn.Open();
-                query = "UPDATE `preparadas`.`venta` SET `total` = '1000' WHERE (`idventa` = '4');"; //UPDATE `preparadas`.`venta` SET `total` = '1000' WHERE (`idventa` = '4');
-                cmd = new MySqlCommand(query, conn);
-                reader = cmd.ExecuteReader();
-                conn.Close();
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
+            con.Close();
         }
 
         private void upload()
-        {
-            conn.ConnectionString = "server=" + server + ";" + "user id = " + username + ";" +
-            "password =" + password + ";" + "database = " + database;
-            conn.Open();
-            cmd.Connection = conn;
-            cmd.CommandText = "Select * FROM preparadas.venta";
-            reader = cmd.ExecuteReader();
-            dt.Load(reader);
-            reader.Close();
-            conn.Close();
+        { 
+           string conexion = "Data Source=PAVELAZO;Initial Catalog=preparadas;Integrated Security=True";
+
+           SqlConnection con = new SqlConnection(conexion);
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "Select * FROM ventaa";
+            var rdr = cmd.ExecuteReader();
+
+            dt.Load(rdr);
+            rdr.Close();
+            con.Close();
+
             dataGridView1.DataSource = dt;
         }
 
         private void informe()
         {
-
+            /*
             MySqlConnection cn = new MySqlConnection("Server = localhost; Database = preparadas; Uid = root; Pwd = #Pavel15;");
             DataTable da = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter("Select * FROM venta", cn);
@@ -109,7 +97,7 @@ namespace avance
             ReportDataSource rp = new ReportDataSource("info1",da);
             reportViewer1.LocalReport.DataSources.Add(rp);
             reportViewer1.RefreshReport();
-
+            */
         }
 
         public Form1()
@@ -120,16 +108,20 @@ namespace avance
         private void Form1_Load(object sender, EventArgs e)
         {
             
-             this.reportViewer1.RefreshReport();
             //alta();
             upload();
-            cambio();
-           informe();
+           // cambio();
+          // informe();
 
 
         }
 
         private void reportViewer1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
