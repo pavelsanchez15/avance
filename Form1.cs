@@ -17,19 +17,10 @@ namespace avance
   
     public partial class Form1 : Form
     {
-        MySqlConnection conn = new MySqlConnection();
-        MySqlCommand cmd = new MySqlCommand();
-        DataTable dt = new DataTable();
-        string query;
-        MySqlDataAdapter dta = new MySqlDataAdapter();
-        MySqlDataReader reader;
-        DataSet ds = new DataSet();
         
-        string server = "localhost";
-        string username = "root";
-        string password = "#Pavel15";
-        string database = "preparadas";
-
+        DataTable dt = new DataTable();
+        string query;      
+        DataSet ds = new DataSet();    
 
         private void alta()
         {
@@ -51,10 +42,10 @@ namespace avance
         
         public void cambio()
         {
-          
-           string conexion = "Data Source=PAVELAZO;Initial Catalog=preparadas;Integrated Security=True";
+            
+            string conexion = "Data Source=PAVELAZO;Initial Catalog=preparadas;Integrated Security=True";
 
-           SqlConnection con = new SqlConnection(conexion);
+            SqlConnection con = new SqlConnection(conexion);
 
             con.Open();
            
@@ -87,17 +78,7 @@ namespace avance
 
         private void informe()
         {
-            /*
-            MySqlConnection cn = new MySqlConnection("Server = localhost; Database = preparadas; Uid = root; Pwd = #Pavel15;");
-            DataTable da = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter("Select * FROM venta", cn);
-
-            adapter.Fill(da);
-            reportViewer1.LocalReport.DataSources.Clear();
-            ReportDataSource rp = new ReportDataSource("info1",da);
-            reportViewer1.LocalReport.DataSources.Add(rp);
-            reportViewer1.RefreshReport();
-            */
+           
         }
 
         public Form1()
@@ -108,9 +89,9 @@ namespace avance
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            //alta();
-            upload();
-           // cambio();
+          // alta();
+             upload();
+          // cambio();
           // informe();
 
 
