@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 
 namespace avance
